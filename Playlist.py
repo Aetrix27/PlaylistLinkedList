@@ -7,7 +7,8 @@ class Playlist:
   # TODO: Create a method called add_song that creates a Song object and adds it to the playlist. This method has one parameter called title.
 
   def add_song(self, title):
-    new_node = Song(title)
+    new_node = Song()
+    new_node.set_title(title)
     new_node.next = self.__first_song
     self.__first_song = new_node
 
@@ -42,7 +43,14 @@ class Playlist:
   # TODO: Create a method called length, which returns the number of songs in the playlist.
 
   def length(self):
-    pass
+    counter = 0
+    current_node = self.head
+
+    while current_node != None:
+      counter += 1
+      current_node = current_node.next
+
+    return counter
 
 
   # TODO: Create a method called print_songs that prints a numbered list of the songs in the playlist.
