@@ -5,8 +5,7 @@ class Playlist:
     self.__first_song = None
 
   def add_song(self, title):
-    new_song = Song()
-    new_song.set_title(title)
+    new_song = Song(title)
     new_song.set_next_song(self.__first_song)
     self.__first_song = new_song
 
@@ -25,21 +24,27 @@ class Playlist:
 
     if titleFound == False:
       return -1
-     
+    
 
   def remove_song(self, title):
-    prev_node = None
-    current_node = self.__first_song
-    while current_node != None:
-      if current_node.get_title() == title:
-        if prev_node != None:
-          prev_node.set_next_song(current_node.get_next_song())
-          break
-        else:
-          current_node.set_next_song(self.__first_song)
-          break
-      prev_node = current_node
-      current_node = current_node.get_next_song()
+    prev_song = self.__first_song
+    current_song = self.__first_song
+
+    if current_song.get_title() == title:
+      self.__first_song = self.__first_song.get_next_song()
+      return f"Deleted {current_song.get_title()}"
+
+    while current_song.get_title() != title:
+      prev_song = current_song
+      current_song = current_song.get_next_song()
+
+      if current_song == None:
+        return f"No song found with that name"
+
+      if current_song.get_title() == title:
+        next_song = current_song.get_next_song()
+        prev_song.set_next_song(next_song)
+        return f"Deleted {current_song.get_title()}"
         
 
   def length(self):
