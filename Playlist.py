@@ -5,7 +5,8 @@ class Playlist:
     self.__first_song = None
 
   def add_song(self, title):
-    new_song = Song(title)
+    new_song = Song()
+    new_song.set_title(title)
     new_song.set_next_song(self.__first_song)
     self.__first_song = new_song
 
