@@ -30,7 +30,6 @@ while True:
     song_title = input('What song do you want to add? ')
     playlist.add_song(song_title)
 
-
   # Option 3: To remove a song from playlist
   elif user_selection == 3:
     song_title = input('What song do you want to remove? ')
